@@ -1,25 +1,26 @@
-<div class="card bg-dark text-while">
-  <div class="card-header">{{ getTitulo }}</div>
+<div class="card bg-dark text-white">
+  <div class="card-header">{{ titulo }}</div>
   <div class="card-body">
-    <form (ngSubmit)="create()">
+
+    <form>
       <div class="form-group row">
         <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" ngModel[([(ngModel)]="cliente.nombre")] name="nombre" />
+          <input type="text" class="form-control" [(ngModel)]="cliente.nombre" name="nombre" />
         </div>
       </div>
 
       <div class="form-group row">
-        <label for="apellido" class="col-form-label col-sm-2"></label>
+        <label for="apellido" class="col-form-label col-sm-2">Apellido</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" ngModel[([(ngModel)]="cliente.apellido")] name="apellido" />
+          <input type="text" class="form-control" [(ngModel)]="cliente.apellido" name="apellido" />
         </div>
       </div>
 
       <div class="form-group row">
-        <label for="email" class="col-form-label col-sm-2"></label>
+        <label for="email" class="col-form-label col-sm-2">Email</label>
         <div class="col-sm-6">
-          <input type="text" class="form-control" ngModel[([(ngModel)]="cliente.email")] name="email" />
+          <input type="text" class="form-control" [(ngModel)]="cliente.email" name="email" />
         </div>
       </div>
 
