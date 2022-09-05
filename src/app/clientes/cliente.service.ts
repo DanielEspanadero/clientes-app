@@ -8,7 +8,7 @@ import { Cliente } from './cliente';
   providedIn: 'root',
 })
 export class ClienteService {
-  private urlEndpoint: string = 'http://localhost:8080/api/clientes';
+  private urlEndPoint: string = 'http://localhost:8080/api/clientes';
 
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
@@ -16,10 +16,30 @@ export class ClienteService {
 
   getClientes(): Observable<Cliente[]> {
     // return of(CLIENTES);
-    return this.http.get<Cliente[]>(this.urlEndpoint);
+    return this.http.get<Cliente[]>(this.urlEndPoint);
   }
 
   create(cliente: Cliente): Observable<Cliente> {
-    return this.http.post<Cliente>(this.urlEndpoint, cliente, {headers: this.httpHeaders});
+    return this.http.post<Cliente>(this.urlEndPoint, cliente, {
+      headers: this.httpHeaders,
+    });
+  }
+
+  getCliente(id: number): Observable<Cliente> {
+    return this.http.get(`${this.urlEndPoint}/${id}`);
+  }
+
+  update(cliente: Cliente): Observable<Cliente> {
+    return this.http.put<Cliente>(
+      `${this.urlEndPoint}/${cliente.id}`,
+      cliente,
+      { headers: this.httpHeaders }
+    );
+  }
+
+  delete(id: number): Observable<Cliente> {
+    return this.http.delete<Cliente>(`${this.urlEndPoint}/${id}`, {
+      headers: this.httpHeaders,
+    });
   }
 }
