@@ -11,10 +11,14 @@ export class FormComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit() { }
 
   public create(): void {
     console.log('Clicked!');
     console.log(this.cliente);
+  }
+
+  public getTitulo() {
+    return this.titulo;
   }
 }
