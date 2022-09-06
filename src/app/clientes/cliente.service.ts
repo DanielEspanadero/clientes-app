@@ -30,7 +30,7 @@ export class ClienteService {
       .pipe(
         catchError((e) => {
           console.error(e.error.mensaje);
-          swal.fire('Error al crear al cliente', e.error.mensaje, 'error');
+          swal.fire(e.error.mensaje, e.error.error, 'error');
           return throwError(e);
         })
       );
@@ -56,7 +56,7 @@ export class ClienteService {
       .pipe(
         catchError((e) => {
           console.error(e.error.mensaje);
-          swal.fire('Error al editar al cliente', e.error.mensaje, 'error');
+          swal.fire(e.error.mensaje, e.error.error, 'error');
           return throwError(e);
         })
       );
@@ -70,7 +70,7 @@ export class ClienteService {
       .pipe(
         catchError((e) => {
           console.error(e.error.mensaje);
-          swal.fire('Error al eliminar al cliente', e.error.mensaje, 'error');
+          swal.fire(e.error.mensaje, e.error.error, 'error');
           return throwError(e);
         })
       );
