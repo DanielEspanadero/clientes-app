@@ -1,7 +1,7 @@
 <div class="card bg-dark text-white">
   <div class="card-header">{{ titulo }}</div>
   <div class="card-body">
-    <form>
+    <form #clienteForm="ngForm">
       <div class="form-group row">
         <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
         <div class="col-sm-6">
@@ -10,7 +10,21 @@
             class="form-control"
             [(ngModel)]="cliente.nombre"
             name="nombre"
+            required
+            minlength="4"
+            #nombre="ngModel"
           />
+          <div
+            class="alert alert-danger"
+            *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+          >
+            <div *ngIf="nombre.errors?.['required']">
+              El nombre es requerido
+            </div>
+            <div *ngIf="nombre.errors?.['minlength']">
+              El nombre debe tener al menos 4 carácteres
+            </div>
+          </div>
         </div>
       </div>
 
@@ -22,7 +36,18 @@
             class="form-control"
             [(ngModel)]="cliente.apellido"
             name="apellido"
+            required="true"
+            required
+            #apellido="ngModel"
           />
+          <div
+            class="alert alert-danger"
+            *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)"
+          >
+            <div *ngIf="apellido.errors?.['required']">
+              El apellido es requerido
+            </div>
+          </div>
         </div>
       </div>
 
@@ -30,11 +55,22 @@
         <label for="email" class="col-form-label col-sm-2">Email</label>
         <div class="col-sm-6">
           <input
-            type="text"
+            type="email"
             class="form-control"
             [(ngModel)]="cliente.email"
             name="email"
+            required
+            #email="ngModel"
           />
+          <div
+            class="alert alert-danger"
+            *ngIf="email.invalid && (email.dirty || email.touched)"
+          >
+            <div *ngIf="email.errors?.['required']">El email es requerido.</div>
+            <div *ngIf="email.errors?.['email']">
+              El email debe tener un formato válido.
+            </div>
+          </div>
         </div>
       </div>
 
@@ -44,7 +80,8 @@
             class="btn btn-primary"
             role="button"
             (click)="create()"
-            *ngIf="!cliente.id else elseBlock"
+            *ngIf="!cliente.id; else elseBlock"
+            [disabled]="!clienteForm.form.valid"
           >
             Crear
           </button>
@@ -53,6 +90,7 @@
               class="btn btn-primary"
               role="button"
               (click)="update()"
+              [disabled]="!clienteForm.form.valid"
             >
               Editar
             </button>
