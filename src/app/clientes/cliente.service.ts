@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 // import { CLIENTES } from './clientes.json';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import swal from 'sweetalert2';
 import { Cliente } from './cliente';
 
@@ -19,7 +19,15 @@ export class ClienteService {
 
   getClientes(): Observable<Cliente[]> {
     // return of(CLIENTES);
-    return this.http.get<Cliente[]>(this.urlEndPoint);
+    return this.http.get(this.urlEndPoint).pipe(
+      map((response) => {
+        let clientes = response as Cliente[];
+        return clientes.map((cliente) => {
+          cliente.nombre?.toUpperCase();
+          return cliente;
+        });
+      })
+    );
   }
 
   create(cliente: Cliente): Observable<Cliente> {

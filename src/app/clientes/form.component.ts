@@ -11,7 +11,7 @@ import { ClienteService } from './cliente.service';
 export class FormComponent implements OnInit {
   public cliente: Cliente = new Cliente();
   public titulo: string = 'Crear cliente';
-  private errores: string[];
+  public errores: string[];
 
   constructor(
     private clienteService: ClienteService,
