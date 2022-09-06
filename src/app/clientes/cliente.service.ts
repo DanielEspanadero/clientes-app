@@ -24,7 +24,7 @@ export class ClienteService {
 
   create(cliente: Cliente): Observable<Cliente> {
     return this.http
-      .post<Cliente>(this.urlEndPoint, cliente, {
+      .post(this.urlEndPoint, cliente, {
         headers: this.httpHeaders,
       })
       .pipe(
@@ -38,6 +38,7 @@ export class ClienteService {
 
   getCliente(id: number): Observable<Cliente> {
     return this.http.get(`${this.urlEndPoint}/${id}`).pipe(
+      map((response: any) => response.cliente as Cliente),
       catchError((e) => {
         this.router.navigate(['/clientes']);
         console.error(e.error.mensaje);
@@ -48,9 +49,9 @@ export class ClienteService {
     );
   }
 
-  update(cliente: Cliente): Observable<Cliente> {
+  update(cliente: Cliente): Observable<any> {
     return this.http
-      .put<Cliente>(`${this.urlEndPoint}/${cliente.id}`, cliente, {
+      .put<any>(`${this.urlEndPoint}/${cliente.id}`, cliente, {
         headers: this.httpHeaders,
       })
       .pipe(
