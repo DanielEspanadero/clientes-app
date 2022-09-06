@@ -11,7 +11,10 @@ import { FormComponent } from './clientes/form.component';
 import { DirectivaComponent } from './directiva/directiva.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { registerLocaleData } from '@angular/common';
+import localeES from '@angular/common/locales/es';
 
+registerLocaleData(localeES, 'es');
 const routes: Routes = [
   { path: '', redirectTo: '/clientes', pathMatch: 'full' },
   { path: 'directivas', component: DirectivaComponent },
