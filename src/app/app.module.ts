@@ -14,6 +14,7 @@ import { HeaderComponent } from './header/header.component';
 import { registerLocaleData } from '@angular/common';
 import localeES from '@angular/common/locales/es';
 import { PaginatorComponent } from './paginator/paginator.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 registerLocaleData(localeES, 'es');
 const routes: Routes = [
@@ -40,6 +41,7 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(routes),
+    BrowserAnimationsModule,
   ],
   providers: [ClienteService],
   bootstrap: [AppComponent],
